@@ -15,9 +15,15 @@ html
                 a.raleway href="/" style="color:white; font-size:40px; text-decoration: none; background-color: transparent" AA P2P
 
             ul.nav.navbar-nav.navbar-right style="padding-right: 25px;"
-              li.active
-                / a href="#" style="background-color: transparent; border-right: thin solid white" Tutors
-                a href="#" style="background-color: transparent" Tutors
+              - if not signed_in?
+                li.active
+                  / a href="#" style="background-color: transparent; border-right: thin solid white" Tutors
+                  = link_to "Sign Up", new_user_registration_path, style: "background-color: transparent"
+                li.active
+                  = link_to "Sign In", new_user_session_path, style: "background-color: transparent"
+              - else
+                li.active
+                  = link_to "Sign Out", destroy_user_session_path, method: :delete, style: "background-color: transparent"
 
               / li.dropdown
               /   a.dropdown-toggle.no-click-color-change.white-right-border data-toggle="dropdown" href="#"
