@@ -1,0 +1,9 @@
+= form_for @static do |f|
+  - if @static.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@static.errors.count, "error")} prohibited this static from being saved:"
+      ul
+        - @static.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit 'Save'

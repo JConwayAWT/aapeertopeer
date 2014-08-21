@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong First name:
+  = @user.first_name
+p
+  strong Last name:
+  = @user.last_name
+p
+  strong Is admin:
+  = @user.is_admin
+p
+  strong Is tutor:
+  = @user.is_tutor
+p
+  strong Is student:
+  = @user.is_student
+p
+  strong Skype:
+  = @user.skype_id
+p
+  strong Times available:
+  = @user.times_available
+p
+  strong Additional information:
+  = @user.additional_information
+
+= link_to 'Edit', edit_user_path(@user)
+'|
+= link_to 'Back', users_path

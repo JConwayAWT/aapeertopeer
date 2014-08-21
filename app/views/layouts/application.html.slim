@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    title Archmere Academy | Peer to Peer Tutoring
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  body
+    #full-wrapper
+      #full-header
+        nav.navbar.navbar-inverse#no-border-radius.green-navbar role="navigation"
+          .container-fluid style="height:70px; padding-top:10px;"
+            .navbar-header
+              .navbar-brand
+                a.raleway href="/" style="color:white; font-size:40px; text-decoration: none; background-color: transparent" AA P2P
+
+            ul.nav.navbar-nav.navbar-right style="padding-right: 25px;"
+              li.active
+                / a href="#" style="background-color: transparent; border-right: thin solid white" Tutors
+                a href="#" style="background-color: transparent" Tutors
+
+              / li.dropdown
+              /   a.dropdown-toggle.no-click-color-change.white-right-border data-toggle="dropdown" href="#"
+              /     .white-header-link
+              /       | Alumni
+              /       span.caret-medium
+              /   ul.dropdown-menu role="menu"
+              /     li
+              /       = link_to "Full Database", "/alumni"
+              /     li
+              /       = link_to "Find by IU", "/alumni/find_by_iu"
+
+      #full-content
+        .container#body-container
+          = yield
+
+      #full-footer
+        .footer#footer
+          .container
+            .row
+              .col-md-12
+                .text-center.soft-gray-text.small-text.text-padded-top
+                  | Portions of this site ©2014 by its developers and administrators.
+                  br
+                  | This site is powered by Ruby on Rails, Heroku, Amazon Web Services, and Bootstrap.
