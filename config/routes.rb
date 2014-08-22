@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :enrollments
+
+  resources :subjects
+
   resources :statics
 
   devise_for :users
