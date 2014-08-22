@@ -1,12 +1,45 @@
-= form_for @subject do |f|
-  - if @subject.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@subject.errors.count, "error")} prohibited this subject from being saved:"
-      ul
-        - @subject.errors.full_messages.each do |message|
-          li = message
+/ = form_for @subject do |f|
+/   - if @subject.errors.any?
+/     #error_explanation
+/       h2 = "#{pluralize(@subject.errors.count, "error")} prohibited this subject from being saved:"
+/       ul
+/         - @subject.errors.full_messages.each do |message|
+/           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions = f.submit 'Save'
+/   .field
+/     = f.label :name
+/     = f.text_field :name
+/   .actions = f.submit 'Save'
+
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 New Subject
+
+.row
+  .col-md-6.col-md-offset-3
+    = nested_form_for @subject do |f|
+      .form-group
+        = f.text_field :name, autofocus: true, class: "form-control", placeholder: "Subject name"
+
+      = f.fields_for :people_teaching do |pt|
+        .form-group
+          = pt.label "Permitted tutor"
+          br
+          = pt.select :incoming_tutor_id, @select_options, {}, class: "form-control tutor-select"
+        .text-right
+          = pt.link_to_remove "Remove this tutor from this subject"
+        hr
+      = f.link_to_add "Add another tutor for this subject", :people_teaching
+
+      br
+      br
+      .text-center
+        = f.submit "Save Subject and Permitted Tutors", class: "btn btn-primary"
+
+javascript:
+  $(document).ready(function(){
+    if ("#{params[:action]}" == "edit"){
+      $(".tutor-select").prop('disabled', true)
+    }
+  })

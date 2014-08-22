@@ -15,3 +15,4 @@
 //= require_tree .
 //= require bootstrap-sprockets
 //= require jquery-tablesorter
+//= require jquery_nested_form

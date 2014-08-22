@@ -15,10 +15,20 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = Subject.new
+    @select_options = []
+    User.all.each do |user|
+      @select_options << [user.display_name, user.id]
+    end
   end
 
   # GET /subjects/1/edit
   def edit
+
+    @select_options = []
+    User.all.each do |user|
+      @select_options << [user.display_name, user.id]
+    end
+
   end
 
   # POST /subjects
@@ -26,8 +36,22 @@ class SubjectsController < ApplicationController
   def create
     @subject = Subject.new(subject_params)
 
+    new_tutor_ids = []
+    params[:subject][:people_teaching_attributes].each do |attribute|
+      id = attribute[1][:incoming_tutor_id]
+      new_tutor_ids << id
+    end
+
     respond_to do |format|
       if @subject.save
+
+        new_tutor_ids.each do |id|
+          e = Enrollment.new
+          e.user_id = id
+          e.subject_id = @subject.id
+          e.save!
+        end
+
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render :show, status: :created, location: @subject }
       else
@@ -40,8 +64,35 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+
+    new_tutor_ids_plus_deletion = []
+    params[:subject][:people_teaching_attributes].each do |attribute|
+      if attribute[1][:incoming_tutor_id].nil?
+        id = attribute[1][:id]
+      else
+        id = attribute[1][:incoming_tutor_id]
+      end
+      destroy = attribute[1][:_destroy]
+      new_tutor_ids_plus_deletion << [id, destroy]
+    end
+
     respond_to do |format|
       if @subject.update(subject_params)
+
+        new_tutor_ids_plus_deletion.each do |pair|
+          if pair[1] == "1" #that means we should delete this one...
+            e = Enrollment.find_by_user_id_and_subject_id(pair[0], @subject.id)
+            e.destroy!
+          else #that means we should make a new one if it doesn't already exist...
+            if Enrollment.find_by_user_id_and_subject_id(pair[0], @subject.id).nil?
+              e = Enrollment.new
+              e.user_id = pair[0]
+              e.subject_id = @subject.id
+              e.save!
+            end
+          end
+        end
+
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render :show, status: :ok, location: @subject }
       else

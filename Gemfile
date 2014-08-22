@@ -39,6 +39,8 @@ gem 'mailcatcher', group: :development
 gem 'paperclip', '~> 4.1'
 gem 'aws-sdk', '~> 1.5.7'
 
+gem "nested_form"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
