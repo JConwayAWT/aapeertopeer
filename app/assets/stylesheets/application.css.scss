@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-tablesorter/theme.bootstrap_2
  */
 
 @import "bootstrap-sprockets";
@@ -22,6 +23,10 @@ html, body{
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+.alert{
+  padding: 5px;
 }
 
 .raleway{

@@ -23,6 +23,10 @@ html
                   = link_to "Sign In", new_user_session_path, style: "background-color: transparent"
               - else
                 li.active
+                  = link_to "Subjects", subjects_path, style: "background-color: transparent"
+                li.active
+                  = link_to "Users", users_path, style: "background-color: transparent"
+                li.active
                   = link_to "Sign Out", destroy_user_session_path, method: :delete, style: "background-color: transparent"
 
               / li.dropdown
@@ -38,6 +42,17 @@ html
 
       #full-content
         .container#body-container
+          - if notice
+            .row
+              .col-md-6.col-md-offset-3
+                .notice.application-notice.text-center
+                  .alert.alert-info = notice
+
+          - if alert
+            .row
+              .col-md-6.col-md-offset-3
+                .alert.application-alert.text-center
+                  .alert.alert-danger = alert.html_safe
           = yield
 
       #full-footer

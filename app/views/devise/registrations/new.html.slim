@@ -1,13 +1,17 @@
 .row
   .col-md-6.col-md-offset-3
     .text-center
-      h2 Update Profile
+      h2 Sign up
 
 .row
   .col-md-6.col-md-offset-3
-    = form_for @user do |f|
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+
       .form-group
-        = f.text_field :first_name, class: "form-control", placeholder: "First name", autofocus: true
+        = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email Address (@archmereacademy.edu only)"
+
+      .form-group
+        = f.text_field :first_name, class: "form-control", placeholder: "First name"
 
       .form-group
         = f.text_field :last_name, class: "form-control", placeholder: "Last name"
@@ -21,5 +25,11 @@
       .form-group
         = f.text_area :additional_information, rows: 3, class: "form-control", placeholder: "Anything else you'd like future students or tutors to know about you?"
 
+      .form-group
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+
+      .form-group
+        = f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password"
+
       .text-center
-        = f.submit "Save Changes", class: "btn btn-primary"
+        = f.submit "Sign up", class: "btn btn-primary"

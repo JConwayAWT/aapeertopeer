@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-sprockets
-//= require jquery-tablesorter
+//= require jquery.tablesorter
+//= require jquery.tablesorter.widgets
 //= require jquery_nested_form
