@@ -1,0 +1,15 @@
+= form_for @request do |f|
+  - if @request.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
+      ul
+        - @request.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :time
+    = f.text_field :time
+  .field
+    = f.label :status
+    = f.text_field :status
+  .actions = f.submit 'Save'

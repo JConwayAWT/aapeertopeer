@@ -1,0 +1,55 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Your Requests
+
+.row
+  .col-md-12
+    h3 Outgoing Requests
+
+table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-table
+  thead
+    tr
+      th Tutor Name
+      th Subject
+      th Start Time
+      th Duration
+      th Status
+      th Additional Information
+      th Cancel
+  tbody
+    - @requests_out.each do |r|
+      tr
+        td = r.tutor.display_name
+        td = r.subject.name
+        td = r.time
+        td = r.duration.to_f
+        td = r.status
+        td = r.additional_information
+        td #{link_to "Cancel request", request_path(r), method: :delete}
+
+.row
+  .col-md-12
+    h3 Incoming Requests
+
+table.table.table-bordered.table-striped.tablesorter-blue#incoming-requests-table
+  thead
+    tr
+      th Tutor Name
+      th Subject
+      th Start Time
+      th Duration
+      th Status
+      th Additional Information
+      th Response
+  tbody
+    - @requests_in.each do |r|
+      tr
+        td = r.tutor.display_name
+        td = r.subject.name
+        td = r.time
+        td = r.duration.to_f
+        td = r.status
+        td = r.additional_information
+        td #{link_to "Update", "/request_response/#{r.id}"}
+

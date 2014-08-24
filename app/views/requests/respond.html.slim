@@ -1,0 +1,21 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Respond to a Request
+
+.row
+  .col-md-6.col-md-offset-3
+    | Please select "Accepted" or "Rejected" from the dropdown box below.  If you have any additional information that you'd like to give to the student who requested the session, feel free to include it in the text area provided.
+
+br
+
+.row
+  .col-md-6.col-md-offset-3
+    = form_tag "/update_response"
+      .form-group
+        = select_tag "status", options_for_select(@status_options), {class: "form-control"}
+      .form-group
+        = text_area_tag "message", (), {class: "form-control", placeholder: "Anything you'd like to tell the student?", rows: 4}
+        = hidden_field_tag "request_id", @request.id
+      .text-center
+        = submit_tag "Submit Response", class: "btn btn-primary"

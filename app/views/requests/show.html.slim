@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Time:
+  = @request.time
+p
+  strong Status:
+  = @request.status
+
+= link_to 'Edit', edit_request_path(@request)
+'|
+= link_to 'Back', requests_path

@@ -71,7 +71,7 @@ class StaticsController < ApplicationController
 
   def list_tutors
     @pe = ProvidingEnrollment.where(subject_id: params[:subject].to_i)
-    @subject_name = Subject.find(params[:subject].to_i).name
+    @subject= Subject.find(params[:subject].to_i)
   end
 
   private

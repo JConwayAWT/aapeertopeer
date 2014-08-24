@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :requests
+
   resources :consuming_enrollments
 
   resources :providing_enrollments
@@ -24,6 +26,11 @@ Rails.application.routes.draw do
 
   match '/find_tutors', to: 'statics#find_tutors', via: :get
   match '/list_tutors', to: 'statics#list_tutors', via: :post
+
+  match '/generate_request/:tutor_id/:subject_id', to: 'requests#generate_request', via: :get
+  match '/send_request', to: 'requests#send_request', via: :post
+  match '/request_response/:id', to: 'requests#respond', via: :get
+  match '/update_response', to: 'requests#update_response', via: :post
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

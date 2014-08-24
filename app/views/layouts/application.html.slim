@@ -26,6 +26,8 @@ html
                   li.active
                     = link_to "Find Tutors", "/find_tutors", style: "background-color: transparent"
                 li.active
+                  = link_to "Requests", requests_path, style: "background-color: transparent"
+                li.active
                   = link_to "Subjects", subjects_path, style: "background-color: transparent"
                 li.active
                   = link_to "Users", users_path, style: "background-color: transparent"
@@ -47,13 +49,13 @@ html
         .container#body-container
           - if notice
             .row
-              .col-md-6.col-md-offset-3
+              .col-md-8.col-md-offset-2
                 .notice.application-notice.text-center
                   .alert.alert-info = notice
 
           - if alert
             .row
-              .col-md-6.col-md-offset-3
+              .col-md-8.col-md-offset-2
                 .alert.application-alert.text-center
                   .alert.alert-danger = alert.html_safe
           = yield

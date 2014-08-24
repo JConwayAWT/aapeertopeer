@@ -1,7 +1,7 @@
 .row
   .col-md-6.col-md-offset-3
     .text-center
-      h2 Tutors for #{@subject_name}
+      h2 Tutors for #{@subject.name}
 
 - if @pe.nil?
   .row
@@ -23,4 +23,4 @@
           td = tutor.user.first_name
           td = tutor.user.last_name
           td = tutor.user.times_available
-          td = link_to "Click to request", "#"
+          td = link_to "Click to request", "/generate_request/#{tutor.user.id}/#{@subject.id}"

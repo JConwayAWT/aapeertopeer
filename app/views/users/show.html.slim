@@ -14,6 +14,26 @@
 .row
   .col-md-6
     .text-right
+      br
+      b Auto-dial:
+  .col-md-4
+    .text-left
+      .skype-container
+        script src="http://www.skypeassets.com/i/scom/js/skype-uri.js" type="text/javascript" 
+        #SkypeButton_Call
+          javascript:
+            $(document).ready(function(){
+              Skype.ui({
+                "name": "call",
+                "element": "SkypeButton_Call",
+                "participants": ["#{@user.skype_id}"],
+                "imageSize": 32
+              });
+            });
+
+.row
+  .col-md-6
+    .text-right
       b Availability:
   .col-md-4
     .text-left

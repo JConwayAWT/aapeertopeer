@@ -1,0 +1,26 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Request a Tutoring Session
+
+.row
+  .col-md-6.col-md-offset-3
+    | &emsp;&emsp;We're going to send a request to #{@tutor.display_name} to let them know that you'd like them to tutor you in #{@subject.name.downcase}.  In the form below, please let them know exactly when you'd like the session to happen and give a bit more information on what kind of problems or topics you'd like to cover with them.
+
+br
+br
+
+.row
+  .col-md-6.col-md-offset-3
+    = form_tag "/send_request"
+      .form-group
+        = text_area_tag "time", (), {class: "form-control", placeholder: "What time should this session start?", rows: 2}
+      .form-group
+        = text_area_tag "duration", (), {class: "form-control", placeholder: "How many hours should this session last? (You may only enter numbers for this option)"}
+      .form-group
+        = text_area_tag "info", (), {class: "form-control", placeholder: "What topics or problems are you interested in covering during this session?", rows: 4}
+      = hidden_field_tag "tutor_id", @tutor.id
+      = hidden_field_tag "subject_id", @subject.id
+      br
+      .text-center
+        = submit_tag "Send Request", class: "btn btn-primary"
