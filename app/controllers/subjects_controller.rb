@@ -12,6 +12,54 @@ class SubjectsController < ApplicationController
   def show
   end
 
+  def auto_enroll
+    u = current_user
+    s = Subject.all
+    subjects_learning = u.subjects_learning
+    subjects_learning_ids = []
+    subjects_learning.each do |sl|
+      subjects_learning_ids << sl.id
+    end
+
+    addable_subject_ids = Subject.where.not(id: subjects_learning_ids).order(:name)
+    @subject_names_and_ids = []
+    addable_subject_ids.each do |addable_subject_id|
+      s = Subject.find(addable_subject_id)
+      @subject_names_and_ids << [s.name, s.id]
+    end
+  end
+
+  def update_auto_enroll
+    user_id = current_user.id
+    subject_id = params[:subject].to_i
+
+    ce = ConsumingEnrollment.new
+    ce.user_id = user_id
+    ce.subject_id = subject_id
+    ce.save!
+
+    redirect_to user_path(current_user)
+  end
+
+  def remove_enrollment
+    u = current_user
+    sl = u.subjects_learning.order(:name)
+
+    @removable_subjects_and_ids = []
+
+    sl.each do |subj|
+      @removable_subjects_and_ids << [subj.name, subj.id]
+    end
+  end
+
+  def remove_enrollment_update
+    ce = ConsumingEnrollment.find_by_user_id_and_subject_id(current_user.id, params[:subject].to_i)
+    ce.destroy!
+
+    flash[:notice] = "Your enrollment has been successfully removed."
+    redirect_to user_path(current_user)
+  end
+
   # GET /subjects/new
   def new
     @subject = Subject.new
@@ -43,9 +91,6 @@ class SubjectsController < ApplicationController
         new_tutor_ids << id unless attribute[1][:_destroy] == "1"
       end
     end
-
-    debugger
-    puts 'db'
 
     respond_to do |format|
       if @subject.save

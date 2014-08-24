@@ -16,6 +16,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'statics#index'
 
+  match '/auto_enroll', to: 'subjects#auto_enroll', via: :get
+  match '/auto_enroll_update', to: 'subjects#update_auto_enroll', via: :post
+
+  match '/remove_enrollment', to: 'subjects#remove_enrollment', via: :get
+  match '/remove_enrollment_update', to: 'subjects#remove_enrollment_update', via: :post
+
+  match '/find_tutors', to: 'statics#find_tutors', via: :get
+  match '/list_tutors', to: 'statics#list_tutors', via: :post
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

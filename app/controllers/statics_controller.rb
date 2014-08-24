@@ -61,6 +61,19 @@ class StaticsController < ApplicationController
     end
   end
 
+  def find_tutors
+    subjects = current_user.subjects_learning.order(:name)
+    @names_and_ids = []
+    subjects.each do |s|
+      @names_and_ids << [s.name, s.id]
+    end
+  end
+
+  def list_tutors
+    @pe = ProvidingEnrollment.where(subject_id: params[:subject].to_i)
+    @subject_name = Subject.find(params[:subject].to_i).name
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_static

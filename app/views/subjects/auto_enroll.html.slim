@@ -1,0 +1,17 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Enroll for Tutoring
+
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      | Which subject would you like to add to your list of subjects to learn?
+
+.row
+  .col-md-6.col-md-offset-3
+    = form_tag "/auto_enroll_update"
+      .form-group
+        = select_tag "subject", options_for_select(@subject_names_and_ids), {class: "form-control"}
+      .text-center
+        = submit_tag "Add it!", class: "btn btn-primary"

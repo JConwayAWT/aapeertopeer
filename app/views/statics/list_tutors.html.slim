@@ -1,0 +1,26 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Tutors for #{@subject_name}
+
+- if @pe.nil?
+  .row
+    .col-md-6.col-md-offset-3
+      .text-center
+        | Sorry! It looks like there are no tutors for this subject right now =(
+
+- else
+  table.table.table-bordered.table-striped.tablesorter-blue#listed-tutors-table
+    thead
+      tr
+        th First Name
+        th Last Name
+        th data-placeholder="Ex: 'Monday' or 'Saturday'" Times Available
+        th Request Session
+    tbody
+      - @pe.each do |tutor|
+        tr
+          td = tutor.user.first_name
+          td = tutor.user.last_name
+          td = tutor.user.times_available
+          td = link_to "Click to request", "#"

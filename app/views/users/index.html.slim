@@ -1,37 +1,3 @@
-/ h1 Listing users
-
-/ table
-/   thead
-/     tr
-/       th First name
-/       th Last name
-/       th Is admin
-/       th Is tutor
-/       th Is student
-/       th Skype
-/       th Times available
-/       th Additional information
-/       th
-/       th
-/       th
-
-/   tbody
-/     - @users.each do |user|
-/       tr
-/         td = user.first_name
-/         td = user.last_name
-/         td = user.is_admin
-/         td = user.is_tutor
-/         td = user.is_student
-/         td = user.skype_id
-/         td = user.times_available
-/         td = user.additional_information
-/         td = link_to 'Show', user
-/         td = link_to 'Edit', edit_user_path(user)
-/         td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-/ br
-
 .row
   .col-md-12
     .text-center
@@ -51,5 +17,3 @@ table.table.table-bordered.table-striped.tablesorter-blue#all-users-table
         td = user.last_name
         td = user.skype_id
         td = link_to "View", user_path(user)
-
-/ = link_to 'New User', new_user_path

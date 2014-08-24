@@ -1,0 +1,17 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Find Tutors
+
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      | Which of your subjects would you like to find tutors for?
+
+.row
+  .col-md-6.col-md-offset-3
+    = form_tag "/list_tutors"
+      .form-group
+        = select_tag "subject", options_for_select(@names_and_ids), {class: "form-control"}
+      .text-center
+        = submit_tag "Search", class: "btn btn-primary"
