@@ -37,19 +37,26 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     new_tutor_ids = []
-    params[:subject][:people_teaching_attributes].each do |attribute|
-      id = attribute[1][:incoming_tutor_id]
-      new_tutor_ids << id
+    unless params[:subject][:people_teaching_attributes].blank?
+      params[:subject][:people_teaching_attributes].each do |attribute|
+        id = attribute[1][:incoming_tutor_id]
+        new_tutor_ids << id unless attribute[1][:_destroy] == "1"
+      end
     end
+
+    debugger
+    puts 'db'
 
     respond_to do |format|
       if @subject.save
 
-        new_tutor_ids.each do |id|
-          e = Enrollment.new
-          e.user_id = id
-          e.subject_id = @subject.id
-          e.save!
+        unless new_tutor_ids == []
+          new_tutor_ids.each do |id|
+            e = ProvidingEnrollment.new
+            e.user_id = id
+            e.subject_id = @subject.id
+            e.save!
+          end
         end
 
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
@@ -66,29 +73,37 @@ class SubjectsController < ApplicationController
   def update
 
     new_tutor_ids_plus_deletion = []
-    params[:subject][:people_teaching_attributes].each do |attribute|
-      if attribute[1][:incoming_tutor_id].nil?
-        id = attribute[1][:id]
-      else
-        id = attribute[1][:incoming_tutor_id]
+    unless params[:subject][:people_teaching_attributes].blank?
+      params[:subject][:people_teaching_attributes].each do |attribute|
+        if attribute[1][:incoming_tutor_id].nil?
+          id = attribute[1][:id]
+        else
+          id = attribute[1][:incoming_tutor_id]
+        end
+        destroy = attribute[1][:_destroy]
+        new_tutor_ids_plus_deletion << [id, destroy]
       end
-      destroy = attribute[1][:_destroy]
-      new_tutor_ids_plus_deletion << [id, destroy]
     end
 
     respond_to do |format|
       if @subject.update(subject_params)
 
-        new_tutor_ids_plus_deletion.each do |pair|
-          if pair[1] == "1" #that means we should delete this one...
-            e = Enrollment.find_by_user_id_and_subject_id(pair[0], @subject.id)
-            e.destroy!
-          else #that means we should make a new one if it doesn't already exist...
-            if Enrollment.find_by_user_id_and_subject_id(pair[0], @subject.id).nil?
-              e = Enrollment.new
-              e.user_id = pair[0]
-              e.subject_id = @subject.id
-              e.save!
+        unless new_tutor_ids_plus_deletion == []
+          new_tutor_ids_plus_deletion.each do |pair|
+            if pair[1] == "1" #that means we should delete this one...
+              e = ProvidingEnrollment.find_by_user_id_and_subject_id(pair[0], @subject.id)
+              begin
+                e.destroy!
+              rescue
+                puts 'Looks like that user was added and removed in one go...'
+              end
+            else #that means we should make a new one if it doesn't already exist...
+              if ProvidingEnrollment.find_by_user_id_and_subject_id(pair[0], @subject.id).nil?
+                e = ProvidingEnrollment.new
+                e.user_id = pair[0]
+                e.subject_id = @subject.id
+                e.save!
+              end
             end
           end
         end

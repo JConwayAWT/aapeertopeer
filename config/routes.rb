@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :enrollments
+  resources :consuming_enrollments
+
+  resources :providing_enrollments
 
   resources :subjects
 

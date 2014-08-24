@@ -1,0 +1,19 @@
+h1 Listing consuming_enrollments
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @consuming_enrollments.each do |consuming_enrollment|
+      tr
+        td = link_to 'Show', consuming_enrollment
+        td = link_to 'Edit', edit_consuming_enrollment_path(consuming_enrollment)
+        td = link_to 'Destroy', consuming_enrollment, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Consuming enrollment', new_consuming_enrollment_path

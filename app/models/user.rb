@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  has_many :enrollments
-  has_many :subjects_teaching, :through => :enrollments, :source => :subject
-  has_many :subjects_learning, :through => :enrollments, :source => :subject
+  has_many :providing_enrollments
+  has_many :consuming_enrollments
+
+  has_many :subjects_teaching, :through => :providing_enrollments, :source => :subject
+  has_many :subjects_learning, :through => :consuming_enrollments, :source => :subject
 
   def incoming_tutor_id
     return self.id

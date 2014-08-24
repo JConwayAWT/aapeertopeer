@@ -1,0 +1,9 @@
+= form_for @consuming_enrollment do |f|
+  - if @consuming_enrollment.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@consuming_enrollment.errors.count, "error")} prohibited this consuming_enrollment from being saved:"
+      ul
+        - @consuming_enrollment.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit 'Save'

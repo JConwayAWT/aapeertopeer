@@ -1,0 +1,19 @@
+h1 Listing providing_enrollments
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @providing_enrollments.each do |providing_enrollment|
+      tr
+        td = link_to 'Show', providing_enrollment
+        td = link_to 'Edit', edit_providing_enrollment_path(providing_enrollment)
+        td = link_to 'Destroy', providing_enrollment, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Providing enrollment', new_providing_enrollment_path
