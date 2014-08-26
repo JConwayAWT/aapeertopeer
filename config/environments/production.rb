@@ -72,7 +72,7 @@ Rails.application.configure do
       :port => 587,
       :authentication => :plain,
       :enable_starttls_auto => true,
-      :user_name => 'pgss2014cs@gmail.com',
+      :user_name => 'archmere.peer.to.peer@gmail.com',
       :password => ENV["SEND_EMAIL_PASSWORD"]
   }
 
