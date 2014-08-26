@@ -1,0 +1,51 @@
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Session Review
+
+- options = [["Rarely",1],["Somtimes",2],["Most of the time",3],["Always",4]]
+
+.row
+  .col-md-6.col-md-offset-3
+    = form_for @session_review do |f|
+      .form-group
+        | The tutor knows and understands the subject matter well.
+        = f.select :knows_and_understands, options_for_select(options, @session_review.knows_and_understands), {}, class: "form-control"
+      .form-group
+        | The tutor can explain ideas and concepts clearly.
+        = f.select :explains_clearly, options_for_select(options, @session_review.explains_clearly), {}, class: "form-control"
+      .form-group
+        | The tutor asks me questions and has me work through problems.
+        = f.select :asks_me_questions, options_for_select(options, @session_review.asks_me_questions), {}, class: "form-control"
+      .form-group
+        | The tutor listens to me and tries to understand my problem(s) and question(s).
+        = f.select :listens_and_understands, options_for_select(options, @session_review.listens_and_understands), {}, class: "form-control"
+      .form-group
+        | The tutor asks me to explain, summarize, and give examples in order to check my understanding.
+        = f.select :checks_my_understanding, options_for_select(options, @session_review.checks_my_understanding), {}, class: "form-control"
+      .form-group
+        | The tutor is patient with me.
+        = f.select :is_patient, options_for_select(options, @session_review.is_patient), {}, class: "form-control"
+      .form-group
+        | The tutor is friendly and courteous with me.
+        = f.select :is_friendly, options_for_select(options, @session_review.is_friendly), {}, class: "form-control"
+      .form-group
+        | The tutor uses an alternative explanation if needed.
+        = f.select :alternative_explanations, options_for_select(options, @session_review.alternative_explanations), {}, class: "form-control"
+      .form-group
+        | The tutor is trying to accommodate my learning style.
+        = f.select :accomodates, options_for_select(options, @session_review.accomodates), {}, class: "form-control"
+      .form-group
+        | The tutor uses different aids (graphs, pictures...) to explain material when possible.
+        = f.select :uses_aids, options_for_select(options, @session_review.uses_aids), {}, class: "form-control"
+      .form-group
+        | The tutor was available on time.
+        = f.select :on_time, options_for_select(options, @session_review.on_time), {}, class: "form-control"
+      .form-group
+        | The tutor was helpful overall and improved my knowledge of the subject.
+        = f.select :overall_helpful, options_for_select(options, @session_review.overall_helpful), {}, class: "form-control"
+      .form-group
+        = f.text_area :additional_comments, rows: 4, class: "form-control", placeholder: "Any additional comments that you would like to add regarding this session?"
+
+      .text-center
+        = f.submit "Submit Review", class: "btn btn-primary"

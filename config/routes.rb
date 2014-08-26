@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :session_reviews
+
   resources :requests
 
   resources :consuming_enrollments

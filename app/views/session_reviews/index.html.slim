@@ -1,0 +1,47 @@
+h1 Listing session_reviews
+
+table
+  thead
+    tr
+      th Date
+      th Knows and understands
+      th Explains clearly
+      th Asks me questions
+      th Listens and understands
+      th Checks my understanding
+      th Is patient
+      th Is friendly
+      th Alternative explanations
+      th Accomodates
+      th Uses aids
+      th On time
+      th Overall helpful
+      th Additional comments
+      th
+      th
+      th
+
+  tbody
+    - @session_reviews.each do |session_review|
+      tr
+        td = session_review.date
+        td = session_review.knows_and_understands
+        td = session_review.explains_clearly
+        td = session_review.asks_me_questions
+        td = session_review.listens_and_understands
+        td = session_review.checks_my_understanding
+        td = session_review.is_patient
+        td = session_review.is_friendly
+        td = session_review.alternative_explanations
+        td = session_review.accomodates
+        td = session_review.uses_aids
+        td = session_review.on_time
+        td = session_review.overall_helpful
+        td = session_review.additional_comments
+        td = link_to 'Show', session_review
+        td = link_to 'Edit', edit_session_review_path(session_review)
+        td = link_to 'Destroy', session_review, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Session review', new_session_review_path

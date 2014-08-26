@@ -75,6 +75,13 @@ class RequestsController < ApplicationController
       tutor_id: params[:tutor_id].to_i, duration: params[:duration].to_d)
     r.save!
 
+    sr = SessionReview.new
+    sr.tutor_id = params[:tutor_id].to_i
+    sr.learner_id = current_user.id.to_i
+    sr.request_id = r.id
+    sr.subject_id = params[:subject_id].to_i
+    sr.save!
+
     flash[:notice] = "Your request has been sent.  You can check your Requests tab for updates at any time."
     redirect_to user_path(current_user)
   end

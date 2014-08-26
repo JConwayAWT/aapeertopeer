@@ -1,0 +1,41 @@
+.row
+  .col-md-6.col-md-3
+    .text-center
+      h2 Session Review
+
+= form_for @session_review do |f|
+
+  /= f.date_select :date, { :discard_day => true, :discard_month => true, :discard_year => true }
+  / .form-control
+  /   = f.number_field :knows_and_understands, class: "form-control"
+  .radio
+    label
+      input type="radio" value="1" Never
+      input type="radio" value="2" Rarely
+      input type="radio" value="3" Often
+      input type="radio" value="4" Always
+  .form-control
+    = f.number_field :explains_clearly, class: "form-control"
+  .form-control
+    = f.number_field :asks_me_questions
+  .form-control
+    = f.number_field :listens_and_understands
+  .form-control
+    = f.number_field :checks_my_understanding
+  .form-control
+    = f.number_field :is_patient
+  .form-control
+    = f.number_field :is_friendly
+  .form-control
+    = f.number_field :alternative_explanations
+  .form-control
+    = f.number_field :accomodates
+  .form-control
+    = f.number_field :uses_aids
+  .form-control
+    = f.number_field :on_time
+  .form-control
+    = f.number_field :overall_helpful
+  .form-control
+    = f.text_area :additional_comments
+  .actions = f.submit 'Save'

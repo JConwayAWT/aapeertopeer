@@ -16,6 +16,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-tabl
       th Duration
       th Status
       th Additional Information
+      th Survey
       th Cancel
   tbody
     - @requests_out.each do |r|
@@ -26,6 +27,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-tabl
         td = r.duration.to_f
         td = r.status
         td = r.additional_information
+        td #{link_to "Complete Survey", edit_session_review_path(r.get_survey)}
         td #{link_to "Cancel request", request_path(r), method: :delete}
 
 .row

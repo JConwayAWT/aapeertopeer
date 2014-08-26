@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2014-08-24
+  knows_and_understands: 1
+  explains_clearly: 1
+  asks_me_questions: 1
+  listens_and_understands: 1
+  checks_my_understanding: 1
+  is_patient: 1
+  is_friendly: 1
+  alternative_explanations: 1
+  accomodates: 1
+  uses_aids: 1
+  on_time: 1
+  overall_helpful: 1
+  additional_comments: MyText
+
+two:
+  date: 2014-08-24
+  knows_and_understands: 1
+  explains_clearly: 1
+  asks_me_questions: 1
+  listens_and_understands: 1
+  checks_my_understanding: 1
+  is_patient: 1
+  is_friendly: 1
+  alternative_explanations: 1
+  accomodates: 1
+  uses_aids: 1
+  on_time: 1
+  overall_helpful: 1
+  additional_comments: MyText

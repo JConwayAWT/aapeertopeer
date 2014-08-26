@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824185353) do
+ActiveRecord::Schema.define(version: 20140824204509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,29 @@ ActiveRecord::Schema.define(version: 20140824185353) do
     t.integer  "subject_id"
     t.integer  "learner_id"
     t.integer  "tutor_id"
+  end
+
+  create_table "session_reviews", force: true do |t|
+    t.date     "date"
+    t.integer  "knows_and_understands"
+    t.integer  "explains_clearly"
+    t.integer  "asks_me_questions"
+    t.integer  "listens_and_understands"
+    t.integer  "checks_my_understanding"
+    t.integer  "is_patient"
+    t.integer  "is_friendly"
+    t.integer  "alternative_explanations"
+    t.integer  "accomodates"
+    t.integer  "uses_aids"
+    t.integer  "on_time"
+    t.integer  "overall_helpful"
+    t.text     "additional_comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tutor_id"
+    t.integer  "learner_id"
+    t.integer  "subject_id"
+    t.integer  "request_id"
   end
 
   create_table "statics", force: true do |t|
