@@ -6,8 +6,6 @@ class StaticsController < ApplicationController
   # GET /statics
   # GET /statics.json
   def index
-    admin_only
-    @statics = Static.all
   end
 
   # GET /statics/1
