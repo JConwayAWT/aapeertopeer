@@ -82,7 +82,7 @@ class StaticsController < ApplicationController
   end
 
   def update_admin
-    if params[:password] == "temporary_password"
+    if params[:password] == ENV["CREATE_ADMIN_PASSWORD"]
       if signed_in?
         current_user.is_admin = true
         current_user.save!
