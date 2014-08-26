@@ -10,23 +10,29 @@
 table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-table
   thead
     tr
-      th Tutor Name
+      th Tutor
       th Subject
       th Start Time
       th Duration
       th Status
       th Additional Information
+      th Response Text
       th Survey
       th Cancel
   tbody
     - @requests_out.each do |r|
+      - next if r.session_review.date != nil
       tr
-        td = r.tutor.display_name
+        td 
+          <u> 
+            = link_to r.tutor.display_name, user_path(r.tutor)
+          </u>
         td = r.subject.name
         td = r.time
         td = r.duration.to_f
         td = r.status
         td = r.additional_information
+        td = r.rejection_message
         td #{link_to "Complete Survey", edit_session_review_path(r.get_survey)}
         td #{link_to "Cancel request", request_path(r), method: :delete}
 
@@ -37,7 +43,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-tabl
 table.table.table-bordered.table-striped.tablesorter-blue#incoming-requests-table
   thead
     tr
-      th Tutor Name
+      th Student
       th Subject
       th Start Time
       th Duration
@@ -46,8 +52,12 @@ table.table.table-bordered.table-striped.tablesorter-blue#incoming-requests-tabl
       th Response
   tbody
     - @requests_in.each do |r|
+      - next if r.session_review.date != nil
       tr
-        td = r.tutor.display_name
+        td 
+          <u>
+            = link_to r.learner.display_name, user_path(r.learner)
+          </u>
         td = r.subject.name
         td = r.time
         td = r.duration.to_f

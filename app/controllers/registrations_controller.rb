@@ -2,8 +2,6 @@ class RegistrationsController < Devise::RegistrationsController
 
     def create
 
-      debugger
-
       if (params[:user][:email].downcase.ends_with?("@archmereacademy.edu") == false)
         unless params[:user][:email] == "conwayje@gmail.com" or params[:user][:email] == "jeff@arcweb.co"
           flash[:alert] = "You must sign up with your @archmereacademy.edu email address."

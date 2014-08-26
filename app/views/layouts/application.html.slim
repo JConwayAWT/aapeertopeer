@@ -22,17 +22,31 @@ html
                 li.active
                   = link_to "Sign In", new_user_session_path, style: "background-color: transparent"
               - else
-                - if current_user.subjects_learning.any?
-                  li.active
-                    = link_to "Find Tutors", "/find_tutors", style: "background-color: transparent"
                 li.active
                   = link_to "Apply", new_tutor_application_path, style: "background-color: transparent"
                 li.active
                   = link_to "Requests", requests_path, style: "background-color: transparent"
-                li.active
-                  = link_to "Subjects", subjects_path, style: "background-color: transparent"
-                li.active
-                  = link_to "Users", users_path, style: "background-color: transparent"
+
+                - if current_user.is_admin?
+                  li.active
+                    = link_to "Subjects", subjects_path, style: "background-color: transparent"
+                  li.active
+                    = link_to "Users", users_path, style: "background-color: transparent"
+
+                - if current_user.subjects_learning.any?
+                  li.active
+                    = link_to "Find Tutors", "/find_tutors", style: "background-color: transparent"
+                li.dropdown
+                  a.dropdown-toggle.no-click-color-change data-toggle="dropdown" href="#"
+                    .white-header-link
+                      | My Profile
+                      span.caret-medium
+                  ul.dropdown-menu role="menu"
+                    li
+                      = link_to "Show", user_path(current_user)
+                      = link_to "Edit", edit_user_path(current_user)
+                      = link_to "Settings", edit_user_registration_path(current_user)
+
                 li.active
                   = link_to "Sign Out", destroy_user_session_path, method: :delete, style: "background-color: transparent"
 

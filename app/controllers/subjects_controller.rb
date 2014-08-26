@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /subjects
   # GET /subjects.json
   def index
@@ -54,7 +55,12 @@ class SubjectsController < ApplicationController
 
   def remove_enrollment_update
     ce = ConsumingEnrollment.find_by_user_id_and_subject_id(current_user.id, params[:subject].to_i)
-    ce.destroy!
+    
+    begin
+      ce.destroy!
+    rescue
+      puts "Nothing to destroy here"
+    end
 
     flash[:notice] = "Your enrollment has been successfully removed."
     redirect_to user_path(current_user)

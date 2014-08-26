@@ -1,6 +1,7 @@
 class SessionReviewsController < ApplicationController
   before_action :set_session_review, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /session_reviews
   # GET /session_reviews.json
   def index

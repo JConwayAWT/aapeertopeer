@@ -1,9 +1,29 @@
-p#notice = notice
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 = @subject.name
 
-p
-  strong Name:
-  = @subject.name
+.row
+  .col-md-6.col-md-offset-3
+    b Current tutors:
+    br
+    - @subject.people_teaching.each do |pt|
+      = pt.display_name
+      br
 
-= link_to 'Edit', edit_subject_path(@subject)
-'|
-= link_to 'Back', subjects_path
+br
+
+.row
+  .col-md-6.col-md-offset-3
+    b Current students:
+    br
+    - @subject.people_learning.each do |pt|
+      = pt.display_name
+      br
+
+br
+
+.row
+  .col-md-12
+    .text-center
+      = button_to "Back to All Subjects", subjects_path, method: :get, class: "btn btn-primary"

@@ -1,6 +1,7 @@
 class TutorApplicationsController < ApplicationController
   before_action :set_tutor_application, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /tutor_applications
   # GET /tutor_applications.json
   def index
@@ -19,22 +20,26 @@ class TutorApplicationsController < ApplicationController
 
   # GET /tutor_applications/1/edit
   def edit
+    flash[:alert] = "Applications may not be edited after creation."
+    redirect_to user_path(current_user)
   end
 
   # POST /tutor_applications
   # POST /tutor_applications.json
   def create
-    @tutor_application = TutorApplication.new(tutor_application_params)
+    flash[:alert] = "Applications may not be edited after creation."
+    redirect_to user_path(current_user)
+  #   @tutor_application = TutorApplication.new(tutor_application_params)
 
-    respond_to do |format|
-      if @tutor_application.save
-        format.html { redirect_to @tutor_application, notice: 'Tutor application was successfully created.' }
-        format.json { render :show, status: :created, location: @tutor_application }
-      else
-        format.html { render :new }
-        format.json { render json: @tutor_application.errors, status: :unprocessable_entity }
-      end
-    end
+  #   respond_to do |format|
+  #     if @tutor_application.save
+  #       format.html { redirect_to @tutor_application, notice: 'Tutor application was successfully created.' }
+  #       format.json { render :show, status: :created, location: @tutor_application }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @tutor_application.errors, status: :unprocessable_entity }
+  #     end
+  #   end
   end
 
   # PATCH/PUT /tutor_applications/1

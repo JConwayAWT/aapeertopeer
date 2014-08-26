@@ -11,7 +11,14 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    users_path
+    user_path(user)
+  end
+
+  def admin_only
+    unless current_user.is_admin == true
+      flash[:notice] = "You do not have permissions allowing you to complete your requested action."
+      redirect_to user_path(current_user)
+    end
   end
 
 end

@@ -1,6 +1,7 @@
 class ProvidingEnrollmentsController < ApplicationController
   before_action :set_providing_enrollment, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /providing_enrollments
   # GET /providing_enrollments.json
   def index

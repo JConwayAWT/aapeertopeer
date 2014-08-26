@@ -1,21 +1,19 @@
-h1 Listing subjects
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 All Subjects
 
-table
+table.table.table-striped.table-bordered.tablesorter-blue
   thead
     tr
       th Name
       th
       th
       th
-
   tbody
     - @subjects.each do |subject|
       tr
         td = subject.name
-        td = link_to 'Show', subject
-        td = link_to 'Edit', edit_subject_path(subject)
-        td = link_to 'Destroy', subject, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Subject', new_subject_path
+        td = link_to "Show details", subject_path(subject)
+        td = link_to "Edit name", edit_subject_path(subject)
+        td = link_to "Destroy", subject, data: {confirm: "Are you sure?"}, method: :delete

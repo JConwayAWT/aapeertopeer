@@ -1,5 +1,6 @@
 class ConsumingEnrollmentsController < ApplicationController
   before_action :set_consuming_enrollment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /consuming_enrollments
   # GET /consuming_enrollments.json

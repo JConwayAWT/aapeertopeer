@@ -65,7 +65,8 @@
 
 hr
 
-.row
-  .col-md-6.col-md-offset-3
-    | Ready to take some action?  If you want to add this tutor to some subjects, head over to the #{link_to "subject editing page", subjects_path} and add them wherever you want.  If you don't think this person is ready to be a tutor for any subjects right now, you can #{link_to 'delete this application', @tutor_application, data: {:confirm => 'Are you sure?'}, :method => :delete}.
+- if signed_in? and current_user.is_admin == true
+  .row
+    .col-md-6.col-md-offset-3
+      | Ready to take some action?  If you want to add this tutor to some subjects, head over to the #{link_to "subject editing page", subjects_path} and add them wherever you want.  If you don't think this person is ready to be a tutor for any subjects right now, you can #{link_to 'delete this application', @tutor_application, data: {:confirm => 'Are you sure?'}, :method => :delete}.
 

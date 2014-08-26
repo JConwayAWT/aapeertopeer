@@ -74,6 +74,21 @@ class StaticsController < ApplicationController
     @subject= Subject.find(params[:subject].to_i)
   end
 
+  def update_admin
+    if params[:password] == "temporary_password"
+      if signed_in?
+        current_user.is_admin = true
+        current_user.save!
+
+        flash[:notice] = "You now have administrator privileges."
+        redirect_to user_path(current_user) and return
+      end
+    else
+      flash[:alert] = "We were unable to grant administrator privileges.  Please ensure that you have entered the correct password and that you are signed in."
+      redirect_to user_path(current_user) and return
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_static
