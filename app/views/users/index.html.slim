@@ -10,6 +10,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#all-users-table
       th Last name
       th Skype ID
       th Profile Link
+      th Delete User
   tbody
     - @users.each do |user|
       tr
@@ -17,3 +18,4 @@ table.table.table-bordered.table-striped.tablesorter-blue#all-users-table
         td = user.last_name
         td = user.skype_id
         td = link_to "View", user_path(user)
+        td = link_to "Delete", user, method: :delete, data: {confirm: "This action cannot be undone.  Continue with this request and permanently delete this user?"}

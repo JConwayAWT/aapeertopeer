@@ -96,6 +96,18 @@ class StaticsController < ApplicationController
     end
   end
 
+  def revoke_admin
+    if current_user.is_admin != true
+      flash[:notice] = "Hey, what are you doing here?!"
+      redirect_to user_path(current_user)
+    else
+      current_user.is_admin = false
+      current_user.save!
+      flash[:notice] = "Your administrator privileges have been revoked."
+      redirect_to user_path(current_user)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_static

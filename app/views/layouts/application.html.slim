@@ -57,20 +57,11 @@ html
                       = link_to "Show", user_path(current_user)
                       = link_to "Edit", edit_user_path(current_user)
                       = link_to "Settings", edit_user_registration_path(current_user)
+                      - if current_user.is_admin == true
+                        = link_to "Revoke admin", "/revoke_admin", data: {confirm: "Are you sure you want to remove you administrator privileges?"}
 
                 li.active
                   = link_to "Sign Out", destroy_user_session_path, method: :delete, style: "background-color: transparent"
-
-              / li.dropdown
-              /   a.dropdown-toggle.no-click-color-change.white-right-border data-toggle="dropdown" href="#"
-              /     .white-header-link
-              /       | Alumni
-              /       span.caret-medium
-              /   ul.dropdown-menu role="menu"
-              /     li
-              /       = link_to "Full Database", "/alumni"
-              /     li
-              /       = link_to "Find by IU", "/alumni/find_by_iu"
 
       #full-content
         .container#body-container
