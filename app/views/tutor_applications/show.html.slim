@@ -1,0 +1,71 @@
+/ p#notice = notice
+
+/ p
+/   strong Full name:
+/   = @tutor_application.full_name
+/ p
+/   strong Grade:
+/   = @tutor_application.grade
+/ p
+/   strong Email:
+/   = @tutor_application.email
+/ p
+/   strong Times available:
+/   = @tutor_application.times_available
+
+/ = link_to 'Edit', edit_tutor_application_path(@tutor_application)
+/ '|
+/ = link_to 'Back', tutor_applications_path
+
+.row
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 Tutor Application Review
+
+.row
+  .col-md-6.col-md-offset-3
+    b Full name:
+    br = @tutor_application.full_name
+
+    br
+
+    b Grade:
+    br = @tutor_application.grade
+
+    br
+
+    b Email address:
+    br = @tutor_application.email
+
+    br
+
+    b Times available:
+    br = @tutor_application.times_available
+
+    br
+
+    b Subjects
+    br = @tutor_application.subjects
+
+    br
+
+    b Transcript
+    - if @tutor_application.transcript.exists?
+      br = link_to "Download transcript", @tutor_application.transcript.url
+    - else
+      br No transcript was uploaded.
+
+    br
+
+    b Letters of recommendation
+    - if @tutor_application.letters_of_recommendation.exists?
+      br = link_to "Download letters of recommendation", @tutor_application.letters_of_recommendation.url
+    - else
+      br No letters of recommendation were uploaded.
+
+hr
+
+.row
+  .col-md-6.col-md-offset-3
+    | Ready to take some action?  If you want to add this tutor to some subjects, head over to the #{link_to "subject editing page", subjects_path} and add them wherever you want.  If you don't think this person is ready to be a tutor for any subjects right now, you can #{link_to 'delete this application', @tutor_application, data: {:confirm => 'Are you sure?'}, :method => :delete}.
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824204509) do
+ActiveRecord::Schema.define(version: 20140826143706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,24 @@ ActiveRecord::Schema.define(version: 20140824204509) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tutor_applications", force: true do |t|
+    t.string   "full_name"
+    t.integer  "grade"
+    t.string   "email"
+    t.string   "times_available"
+    t.string   "subjects"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "transcript_file_name"
+    t.string   "transcript_content_type"
+    t.integer  "transcript_file_size"
+    t.datetime "transcript_updated_at"
+    t.string   "letters_of_recommendation_file_name"
+    t.string   "letters_of_recommendation_content_type"
+    t.integer  "letters_of_recommendation_file_size"
+    t.datetime "letters_of_recommendation_updated_at"
   end
 
   create_table "users", force: true do |t|

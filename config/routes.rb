@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tutor_applications
+
   resources :session_reviews
 
   resources :requests

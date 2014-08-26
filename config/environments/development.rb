@@ -37,6 +37,15 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
+  module Paperclip::Storage::Filesystem
+    def self.extended base
+      base.instance_eval do
+        @options[:url] = "/system/#{@options[:path]}"
+        @options[:path] = ":rails_root/public/system/#{@options[:path]}"
+      end
+    end
+  end
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
