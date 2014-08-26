@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   match '/become_admin', to: 'statics#become_admin', via: :get
   match '/update_admin', to: 'statics#update_admin', via: :post
 
+  match '/my_applications', to: 'tutor_applications#my_applications', via: :get
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,29 +1,36 @@
 class StaticsController < ApplicationController
   before_action :set_static, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:find_tutors, :list_tutors, :update_admin]
+
 
   # GET /statics
   # GET /statics.json
   def index
+    admin_only
     @statics = Static.all
   end
 
   # GET /statics/1
   # GET /statics/1.json
   def show
+    admin_only
   end
 
   # GET /statics/new
   def new
+    admin_only
     @static = Static.new
   end
 
   # GET /statics/1/edit
   def edit
+    admin_only
   end
 
   # POST /statics
   # POST /statics.json
   def create
+    admin_only
     @static = Static.new(static_params)
 
     respond_to do |format|
@@ -40,6 +47,7 @@ class StaticsController < ApplicationController
   # PATCH/PUT /statics/1
   # PATCH/PUT /statics/1.json
   def update
+    admin_only
     respond_to do |format|
       if @static.update(static_params)
         format.html { redirect_to @static, notice: 'Static was successfully updated.' }
@@ -54,6 +62,7 @@ class StaticsController < ApplicationController
   # DELETE /statics/1
   # DELETE /statics/1.json
   def destroy
+    admin_only
     @static.destroy
     respond_to do |format|
       format.html { redirect_to statics_url, notice: 'Static was successfully destroyed.' }

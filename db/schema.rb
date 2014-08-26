@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826143706) do
+ActiveRecord::Schema.define(version: 20140826184811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140826143706) do
     t.string   "letters_of_recommendation_content_type"
     t.integer  "letters_of_recommendation_file_size"
     t.datetime "letters_of_recommendation_updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

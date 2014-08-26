@@ -7,13 +7,12 @@ class RequestsController < ApplicationController
   def index
     @requests_out = Request.where(learner_id: current_user.id)
     @requests_in = Request.where(tutor_id: current_user.id)
-
-
   end
 
   # GET /requests/1
   # GET /requests/1.json
   def show
+    owner_admin_only
   end
 
   # GET /requests/new
@@ -23,6 +22,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    owner_admin_only
   end
 
   # POST /requests
@@ -44,6 +44,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+    owner_admin_only
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
@@ -58,6 +59,7 @@ class RequestsController < ApplicationController
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
+    owner_admin_only
     @request.destroy
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
@@ -88,11 +90,13 @@ class RequestsController < ApplicationController
   end
 
   def respond
+    owner_admin_only
     @status_options = [["Accepted","Accepted"],["Rejected","Rejected"]]
   end
 
   def update_response #from the tutor
     @request = Request.find(params[:request_id].to_i)
+    owner_admin_only
     @request.status = params[:status]
     @request.rejection_message = params[:message]
     @request.save!
@@ -109,5 +113,12 @@ class RequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:time, :status)
+    end
+
+    def owner_admin_only
+      unless @request.tutor == current_user or @request.learner == current_user or current_user.is_admin == true
+        flash[:alert] = "You do not have permission to take the requested action"
+        redirect_to user_path(current_user)
+      end
     end
 end

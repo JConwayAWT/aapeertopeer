@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def admin_only
     unless current_user.is_admin == true
-      flash[:notice] = "You do not have permissions allowing you to complete your requested action."
+      flash[:alert] = "You do not have permissions allowing you to complete your requested action."
       redirect_to user_path(current_user)
     end
   end

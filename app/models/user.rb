@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :subjects_teaching, :through => :providing_enrollments, :source => :subject
   has_many :subjects_learning, :through => :consuming_enrollments, :source => :subject
 
+  has_many :tutor_applications
+
   def incoming_tutor_id
     return self.id
   end

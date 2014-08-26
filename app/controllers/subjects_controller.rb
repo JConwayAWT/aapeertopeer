@@ -5,12 +5,14 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
+    admin_only
     @subjects = Subject.all
   end
 
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    admin_only
   end
 
   def auto_enroll
@@ -68,6 +70,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
+    admin_only
     @subject = Subject.new
     @select_options = []
     User.all.each do |user|
@@ -77,7 +80,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
-
+    admin_only
     @select_options = []
     User.all.each do |user|
       @select_options << [user.display_name, user.id]
@@ -88,6 +91,7 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
+    admin_only
     @subject = Subject.new(subject_params)
 
     new_tutor_ids = []
@@ -122,6 +126,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    admin_only
 
     new_tutor_ids_plus_deletion = []
     unless params[:subject][:people_teaching_attributes].blank?
@@ -171,6 +176,7 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
+    admin_only
     @subject.destroy
     respond_to do |format|
       format.html { redirect_to subjects_url, notice: 'Subject was successfully destroyed.' }

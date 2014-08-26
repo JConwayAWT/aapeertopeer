@@ -22,8 +22,21 @@ html
                 li.active
                   = link_to "Sign In", new_user_session_path, style: "background-color: transparent"
               - else
-                li.active
-                  = link_to "Apply", new_tutor_application_path, style: "background-color: transparent"
+
+
+                / li.active
+                /   = link_to "Apply", new_tutor_application_path, style: "background-color: transparent"
+                li.dropdown
+                  a.dropdown-toggle.no-click-color-change data-toggle="dropdown" href="#"
+                    .white-header-link
+                      | Apply
+                      span.caret-medium
+                  ul.dropdown-menu role="menu"
+                    li
+                      = link_to "Submit Application", new_tutor_application_path
+                      = link_to "View Submissions", "/my_applications"
+
+
                 li.active
                   = link_to "Requests", requests_path, style: "background-color: transparent"
 

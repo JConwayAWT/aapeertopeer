@@ -5,12 +5,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    admin_only
     @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    owner_admin_only
   end
 
   # GET /users/new
@@ -20,15 +22,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    owner_admin_only
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    debugger
-    puts 'db'
 
     respond_to do |format|
       if @user.save
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    owner_admin_only
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -58,6 +59,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    owner_admin_only
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -74,5 +76,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :is_admin, :is_tutor, :is_student, :skype_id, :times_available, :additional_information)
+    end
+
+    def owner_admin_only
+      unless @user == current_user or current_user.is_admin == true
+        flash[:alert] = "You do not have permission to take the requested action"
+        redirect_to user_path(current_user)
+      end
     end
 end

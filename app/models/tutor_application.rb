@@ -1,5 +1,6 @@
 class TutorApplication < ActiveRecord::Base
-
+  belongs_to :user
+  
   has_attached_file :transcript, 
       path: "transcripts/:id/:filename"
 

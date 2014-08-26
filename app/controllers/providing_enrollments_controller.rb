@@ -5,26 +5,31 @@ class ProvidingEnrollmentsController < ApplicationController
   # GET /providing_enrollments
   # GET /providing_enrollments.json
   def index
+    admin_only
     @providing_enrollments = ProvidingEnrollment.all
   end
 
   # GET /providing_enrollments/1
   # GET /providing_enrollments/1.json
   def show
+    admin_only
   end
 
   # GET /providing_enrollments/new
   def new
+    admin_only
     @providing_enrollment = ProvidingEnrollment.new
   end
 
   # GET /providing_enrollments/1/edit
   def edit
+    admin_only
   end
 
   # POST /providing_enrollments
   # POST /providing_enrollments.json
   def create
+    admin_only
     @providing_enrollment = ProvidingEnrollment.new(providing_enrollment_params)
 
     respond_to do |format|
@@ -41,6 +46,7 @@ class ProvidingEnrollmentsController < ApplicationController
   # PATCH/PUT /providing_enrollments/1
   # PATCH/PUT /providing_enrollments/1.json
   def update
+    admin_only
     respond_to do |format|
       if @providing_enrollment.update(providing_enrollment_params)
         format.html { redirect_to @providing_enrollment, notice: 'Providing enrollment was successfully updated.' }
@@ -55,6 +61,7 @@ class ProvidingEnrollmentsController < ApplicationController
   # DELETE /providing_enrollments/1
   # DELETE /providing_enrollments/1.json
   def destroy
+    admin_only
     @providing_enrollment.destroy
     respond_to do |format|
       format.html { redirect_to providing_enrollments_url, notice: 'Providing enrollment was successfully destroyed.' }
