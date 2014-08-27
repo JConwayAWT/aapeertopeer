@@ -2,9 +2,9 @@ class RegistrationsController < Devise::RegistrationsController
 
     def create
 
-      if (params[:user][:email].downcase.ends_with?("@archmereacademy.edu") == false)
+      if (params[:user][:email].downcase.ends_with?("@archmereacademy.com") == false)
         unless params[:user][:email] == "conwayje@gmail.com" or params[:user][:email] == "jeff@arcweb.co"
-          flash[:alert] = "You must sign up with your @archmereacademy.edu email address."
+          flash[:alert] = "You must sign up with your @archmereacademy.com email address."
           redirect_to new_user_registration_path and return
         end
       end
