@@ -49,6 +49,9 @@ class SessionReviewsController < ApplicationController
       if @session_review.update(session_review_params)
         @session_review.date = Date.today
         @session_review.save!
+        r = @session_review.request
+        r.status = "Completed"
+        r.save!
         format.html { redirect_to @session_review, notice: 'Session review was successfully updated.' }
         format.json { render :show, status: :ok, location: @session_review }
       else

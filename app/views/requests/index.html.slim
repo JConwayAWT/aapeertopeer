@@ -21,7 +21,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-tabl
       th Cancel
   tbody
     - @requests_out.each do |r|
-      - next if r.session_review.date != nil
+      - next if r.status == "Completed"
       tr
         td 
           <u> 
@@ -52,7 +52,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#incoming-requests-tabl
       th Response
   tbody
     - @requests_in.each do |r|
-      - next if r.session_review.date != nil
+      - next if r.status == "Completed"
       tr
         td 
           <u>

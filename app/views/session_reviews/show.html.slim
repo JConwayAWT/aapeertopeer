@@ -10,7 +10,7 @@
     br
     br
 
-    - if @session_review.date?
+    - if @session_review.request.status == "Completed"
       | This review was completed on #{@session_review.date}.
     - else
       | This review has  not yet been completed.

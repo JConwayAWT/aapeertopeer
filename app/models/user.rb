@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     completed_requests = []
     total_hours = 0
     requests.each do |r|
-      if r.status == "Accepted" and r.session_review.date != nil
+      if r.status == "Completed"
         total_hours += r.duration
       end
     end
