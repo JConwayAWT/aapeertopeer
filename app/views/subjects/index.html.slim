@@ -15,5 +15,10 @@ table.table.table-striped.table-bordered.tablesorter-blue
       tr
         td = subject.name
         td = link_to "Show details", subject_path(subject)
-        td = link_to "Edit name", edit_subject_path(subject)
+        td = link_to "Edit name and/or tutors", edit_subject_path(subject)
         td = link_to "Destroy", subject, data: {confirm: "Are you sure?"}, method: :delete
+
+.row
+  .col-md-12
+    .text-right
+      = button_to "Create new subject", new_subject_path, method: :get, class: "btn btn-primary"
