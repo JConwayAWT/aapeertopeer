@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :subjects_learning, :through => :consuming_enrollments, :source => :subject
 
   has_many :tutor_applications, dependent: :destroy
-  has_many :requests, dependent: :destroy
+  has_many :requests
 
   def incoming_tutor_id
     return self.id
