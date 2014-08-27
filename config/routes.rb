@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match '/requests/view_all', to: 'requests#view_all', via: :get
+  
   resources :tutor_applications
 
   resources :session_reviews

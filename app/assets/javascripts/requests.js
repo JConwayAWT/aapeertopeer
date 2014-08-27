@@ -8,4 +8,9 @@ $(document).ready(function(){
     sortList: [[1, 0]],
     widgets: ["zebra"]
   });
+
+  $("#all-requests-table").tablesorter({
+    sortList: [[5, 1]],
+    widgets: ["zebra","filter"]
+  });
 });

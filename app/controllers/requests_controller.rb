@@ -104,6 +104,11 @@ class RequestsController < ApplicationController
     redirect_to requests_path
   end
 
+  def view_all
+    admin_only
+    @requests = Request.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request

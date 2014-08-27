@@ -1,0 +1,23 @@
+.row 
+  .col-md-6.col-md-offset-3
+    .text-center
+      h2 All Requests
+
+table.table.table-bordered.table-striped.tablesorter-blue#all-requests-table
+  thead
+    tr
+      th Tutor
+      th Learner
+      th Status
+      th Subject
+      th Duration
+      th Request creation time
+  tbody
+    - @requests.each do |r|
+      tr
+        td = link_to r.tutor.display_name, r.tutor
+        td = link_to r.learner.display_name, r.learner
+        td = r.status
+        td = r.subject.name
+        td = r.duration
+        td = r.created_at
