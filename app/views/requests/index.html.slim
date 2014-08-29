@@ -3,6 +3,12 @@
     .text-center
       h2 Your Requests
 
+- if current_user.is_admin == true
+  .row
+    .col-md-12
+      .text-right
+        = button_to "Admin: View All Requests", "/requests/view_all", method: :get, class: "btn btn-primary"
+
 .row
   .col-md-12
     h3 Outgoing Requests
