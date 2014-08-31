@@ -42,6 +42,17 @@
 .row
   .col-md-6
     .text-right
+      b Google Calendar Link
+  .col-md-4
+    .text-left
+      - if @user.google_calendar_link
+        = link_to "Click to view", @user.google_calendar_link
+      - else
+        | Not available
+
+.row
+  .col-md-6
+    .text-right
       b Additional Information:
   .col-md-4
     .text-left

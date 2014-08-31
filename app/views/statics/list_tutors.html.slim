@@ -16,6 +16,7 @@
         th First Name
         th Last Name
         th data-placeholder="Ex: 'Monday' or 'Saturday'" Times Available
+        th Google Calendar
         th Request Session
     tbody
       - @pe.each do |tutor|
@@ -23,4 +24,5 @@
           td = tutor.user.first_name
           td = tutor.user.last_name
           td = tutor.user.times_available
+          td = link_to "Click to view", tutor.user.google_calendar_link
           td = link_to "Click to request", "/generate_request/#{tutor.user.id}/#{@subject.id}"

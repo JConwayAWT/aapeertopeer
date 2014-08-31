@@ -16,6 +16,10 @@
         = f.text_field :skype_id, class: "form-control", placeholder: "Skype ID"
 
       .form-group
+        | If you're a tutor and want to display your available hours in a Google Calendar, feel free to provide the link to that calendar here once you've created it:
+        = f.text_field :google_calendar_link, class: "form-control", placeholder: "Google Calendar link"
+
+      .form-group
         = f.text_area :times_available, rows: 3, class: "form-control", placeholder: "What times are you available?"
 
       .form-group
