@@ -13,16 +13,16 @@
   table.table.table-bordered.table-striped.tablesorter-blue#listed-tutors-table
     thead
       tr
-        th First Name
-        th Last Name
+        th Name & Profile
+        th title="Indicates if the tutor was active on the site in the last five minutes" Online Now?*
         th data-placeholder="Ex: 'Monday' or 'Saturday'" Times Available
         th Google Calendar
         th Request Session
     tbody
       - @pe.each do |tutor|
         tr
-          td = tutor.user.first_name
-          td = tutor.user.last_name
+          td = link_to tutor.user.display_name, tutor.user
+          td = tutor.user.last_active_time > Time.now - 5.minutes ? "Yes" : "No"
           td = tutor.user.times_available
           td = link_to "Click to view", tutor.user.google_calendar_link
           td = link_to "Click to request", "/generate_request/#{tutor.user.id}/#{@subject.id}"

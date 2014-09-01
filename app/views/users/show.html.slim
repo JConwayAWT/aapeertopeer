@@ -53,6 +53,17 @@
 .row
   .col-md-6
     .text-right
+      b title="Indicates if the user was online in the last five minutes" Online Now?*
+  .col-md-4
+    .text-left
+      - if @user.last_active_time > Time.now - 5.minutes
+        | Yes
+      - else
+        | No
+
+.row
+  .col-md-6
+    .text-right
       b Additional Information:
   .col-md-4
     .text-left
