@@ -83,7 +83,7 @@ class TutorApplicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_application_params
-      params.require(:tutor_application).permit(:full_name, :grade, :email, :times_available, :subjects, :letters_of_recommendation, :transcript)
+      params.require(:tutor_application).permit(:full_name, :grade, :classes_and_grades, :email, :times_available, :subjects, :letters_of_recommendation, :transcript)
     end
 
     def owner_admin_only

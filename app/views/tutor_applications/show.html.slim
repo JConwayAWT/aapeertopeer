@@ -1,22 +1,3 @@
-/ p#notice = notice
-
-/ p
-/   strong Full name:
-/   = @tutor_application.full_name
-/ p
-/   strong Grade:
-/   = @tutor_application.grade
-/ p
-/   strong Email:
-/   = @tutor_application.email
-/ p
-/   strong Times available:
-/   = @tutor_application.times_available
-
-/ = link_to 'Edit', edit_tutor_application_path(@tutor_application)
-/ '|
-/ = link_to 'Back', tutor_applications_path
-
 .row
   .col-md-6.col-md-offset-3
     .text-center
@@ -49,12 +30,11 @@
 
     br
 
-    b Transcript
-    - if @tutor_application.transcript.exists?
-      br = link_to "Download transcript", @tutor_application.transcript.url
+    b Classes and grades:
+    - unless @tutor_application.classes_and_grades.blank?
+      br = @tutor_application.classes_and_grades.gsub(/\n/, '<br/>').html_safe
     - else
-      br No transcript was uploaded.
-
+      br No classes or grades indicated
     br
 
     b Letters of recommendation

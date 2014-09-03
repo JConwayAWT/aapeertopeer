@@ -25,14 +25,14 @@
         = f.text_area :times_available, rows: 3, class: "form-control", value: current_user.times_available
 
       .form-group
-        = f.label "Which subjects do you want to tutor?"
-        = f.text_field :subjects, class: "form-control", placeholder: "Ex: Trigonometry, biology, ..."
+        b Which subjects do you want to tutor? Please indicate the level of the course
+        = f.text_field :subjects, class: "form-control", placeholder: "Ex: AP Calculus, Honors Algebra II, ..."
 
       hr style="border-top: 1px solid #cfcfcf"
 
       .form-group
-        = f.label "Transcript"
-        = f.file_field :transcript
+        b Please indicate the name and grade received for any relevant classes
+        = f.text_area :classes_and_grades, rows: 3, class: "form-control", placeholder: "Ex: AP Calculus: A-, ..."
 
       hr style="border-top: 1px solid #cfcfcf"
 

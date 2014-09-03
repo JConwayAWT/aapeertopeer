@@ -17,7 +17,10 @@ table.table.table-bordered.table-striped.tablesorter-blue#all-requests-table
       tr
         td = link_to r.tutor.display_name, r.tutor
         td = link_to r.learner.display_name, r.learner
-        td = r.status
+        td 
+          = r.status + " "
+          - if r.status == "Completed"
+            = link_to "(Survey)", r.session_review
         td = r.subject.name
         td = r.duration
         td = r.created_at
