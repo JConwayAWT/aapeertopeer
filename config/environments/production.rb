@@ -102,7 +102,7 @@ Rails.application.configure do
     :storage => :s3,
     :s3_permissions => :private,
     :s3_credentials => {
-      :bucket => 'cs_assignments',
+      :bucket => 'tutordocuments',
       :access_key_id => ENV["AWS_KEY"],
       :secret_access_key => ENV["AWS_SECRET"],
     }
