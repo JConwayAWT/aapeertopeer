@@ -21,6 +21,6 @@ table.table.table-bordered.table-striped.tablesorter-blue#all-requests-table
           = r.status + " "
           - if r.status == "Completed"
             = link_to "(Survey)", r.session_review
-        td = r.subject.name
+        td = r.subject.blank? ? "None specified" : r.subject.name
         td = r.duration
         td = r.created_at

@@ -33,7 +33,7 @@ table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-tabl
           <u> 
             = link_to r.tutor.display_name, user_path(r.tutor)
           </u>
-        td = r.subject.name
+        td = r.subject.blank? ? "None specified" : r.subject.name
         td = r.time
         td = r.duration.to_f
         td = r.status
