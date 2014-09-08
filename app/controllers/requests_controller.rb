@@ -69,7 +69,7 @@ class RequestsController < ApplicationController
 
   def generate_request
     @tutor = User.find(params[:tutor_id].to_i)
-    @subject = Subject.find(params[:subject_id].to_i)    
+    @subject = Subject.find(params[:subject_id].to_i) 
   end
 
   def send_request
