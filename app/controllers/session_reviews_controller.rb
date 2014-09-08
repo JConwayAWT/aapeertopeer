@@ -12,7 +12,7 @@ class SessionReviewsController < ApplicationController
   # GET /session_reviews/1
   # GET /session_reviews/1.json
   def show
-    owner_admin_only
+    learner_only
   end
 
   # GET /session_reviews/new
@@ -22,7 +22,7 @@ class SessionReviewsController < ApplicationController
 
   # GET /session_reviews/1/edit
   def edit
-    admin_only
+    learner_only
   end
 
   # POST /session_reviews

@@ -47,6 +47,8 @@ html
                     = link_to "Subjects", subjects_path, style: "background-color: transparent"
                   li.active
                     = link_to "Users", users_path, style: "background-color: transparent"
+                  li.active
+                    = link_to "Reviews", session_reviews_path, style: "background-color: transparent"
 
                 - if current_user.subjects_learning.any?
                   li.active
