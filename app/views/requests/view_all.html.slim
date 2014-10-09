@@ -15,8 +15,8 @@ table.table.table-bordered.table-striped.tablesorter-blue#all-requests-table
   tbody
     - @requests.each do |r|
       tr
-        td #{r.tutor.blank? ? link_to r.tutor.display_name, r.tutor : "None listed"}
-        td #{r.learner.blank? ? link_to r.learner.display_name, r.learner : "None listed"}
+        td #{r.tutor.blank? ? link_to(r.tutor.display_name, r.tutor) : "None listed"}
+        td #{r.learner.blank? ? link_to(r.learner.display_name, r.learner) : "None listed"}
         td 
           = r.status + " "
           - if r.status == "Completed"
