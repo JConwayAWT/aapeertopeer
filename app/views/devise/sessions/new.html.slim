@@ -1,7 +1,7 @@
 .row
   .col-md-6.col-md-offset-3
     .text-center
-      h2 Log in
+      h2 Sign In
 
 .row
   .col-md-6.col-md-offset-3
@@ -17,8 +17,9 @@
         = f.label :remember_me
 
       .text-center
-        = f.submit "Sign in", class: "btn btn-primary"
+        = f.submit "Sign In", class: "btn btn-primary btn-large"
 
-br
-= link_to "Forgot your password?", "/users/password/new"
-br = link_to "Didn't receive confirmation instructions?", "/users/confirmation/new"
+.row
+  .col-md-10.col-md-offset-1
+    = link_to "Forgot your password?", "/users/password/new"
+    br = link_to "Didn't receive confirmation instructions?", "/users/confirmation/new"

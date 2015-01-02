@@ -1,25 +1,27 @@
 .row
-  .col-md-12
+  .col-md-10.col-md-offset-1
     .text-center
       | All Users
 
-table.table.table-bordered.table-striped.tablesorter-blue#all-users-table
-  thead
-    tr
-      th First name
-      th Last name
-      th Skype ID
-      th Email address
-      th Total tutoring hours
-      th Profile link
-      th Delete user
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.first_name
-        td = user.last_name
-        td = user.skype_id
-        td = user.email
-        td = user.total_tutoring_hours
-        td = link_to "View", user_path(user)
-        td = link_to "Delete", user, method: :delete, data: {confirm: "This action cannot be undone.  Continue with this request and permanently delete this user?"}
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-bordered.table-striped.tablesorter-blue#all-users-table
+      thead
+        tr
+          th First name
+          th Last name
+          th Skype ID
+          th Email address
+          th Total tutoring hours
+          th Profile link
+          th Delete user
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.first_name
+            td = user.last_name
+            td = user.skype_id
+            td = user.email
+            td = user.total_tutoring_hours
+            td = link_to "View", user_path(user)
+            td = link_to "Delete", user, method: :delete, data: {confirm: "This action cannot be undone.  Continue with this request and permanently delete this user?"}

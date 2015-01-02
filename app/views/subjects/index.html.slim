@@ -3,22 +3,24 @@
     .text-center
       h2 All Subjects
 
-table.table.table-striped.table-bordered.tablesorter-blue
-  thead
-    tr
-      th Name
-      th
-      th
-      th
-  tbody
-    - @subjects.each do |subject|
-      tr
-        td = subject.name
-        td = link_to "Show details", subject_path(subject)
-        td = link_to "Edit name and/or tutors", edit_subject_path(subject)
-        td = link_to "Destroy", subject, data: {confirm: "Are you sure?"}, method: :delete
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-striped.table-bordered.tablesorter-blue
+      thead
+        tr
+          th Name
+          th
+          th
+          th
+      tbody
+        - @subjects.each do |subject|
+          tr
+            td = subject.name
+            td = link_to "Show details", subject_path(subject)
+            td = link_to "Edit name and/or tutors", edit_subject_path(subject)
+            td = link_to "Destroy", subject, data: {confirm: "Are you sure?"}, method: :delete
 
 .row
-  .col-md-12
+  .col-md-10.col-md-offset-1
     .text-right
       = button_to "Create new subject", new_subject_path, method: :get, class: "btn btn-primary"

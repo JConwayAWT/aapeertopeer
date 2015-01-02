@@ -10,19 +10,21 @@
         | Sorry! It looks like there are no tutors for this subject right now =(
 
 - else
-  table.table.table-bordered.table-striped.tablesorter-blue#listed-tutors-table
-    thead
-      tr
-        th Name & Profile
-        th title="Indicates if the tutor was active on the site in the last five minutes" Online Now?*
-        th data-placeholder="Ex: 'Monday' or 'Saturday'" Times Available
-        th Google Calendar
-        th Request Session
-    tbody
-      - @pe.each do |tutor|
-        tr
-          td = link_to tutor.user.display_name, tutor.user
-          td = tutor.user.last_active_time > Time.now - 5.minutes ? "Yes" : "No"
-          td = tutor.user.times_available
-          td = link_to "Click to view", tutor.user.google_calendar_link
-          td = link_to "Click to request", "/generate_request/#{tutor.user.id}/#{@subject.id}"
+  .row
+    .col-md-10.col-md-offset-1
+      table.table.table-bordered.table-striped.tablesorter-blue#listed-tutors-table
+        thead
+          tr
+            th Name & Profile
+            th title="Indicates if the tutor was active on the site in the last five minutes" Online Now?*
+            th data-placeholder="Ex: 'Monday' or 'Saturday'" Times Available
+            th Google Calendar
+            th Request Session
+        tbody
+          - @pe.each do |tutor|
+            tr
+              td = link_to tutor.user.display_name, tutor.user
+              td = tutor.user.last_active_time > Time.now - 5.minutes ? "Yes" : "No"
+              td = tutor.user.times_available
+              td = link_to "Click to view", tutor.user.google_calendar_link
+              td = link_to "Click to request", "/generate_request/#{tutor.user.id}/#{@subject.id}"

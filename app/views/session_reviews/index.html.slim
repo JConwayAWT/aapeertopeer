@@ -1,21 +1,23 @@
 .row
-  .col-md-12
+  .col-md-10.col-md-offset-1
     .text-center 
       h2 Session Reviews
 
-table.table.table-bordered.table-striped.tablesorter-blue#all-session-reviews-table
-  thead
-    tr
-      th Tutor
-      th Student
-      th Average Score
-      th Show Review
-      th Destroy Review
-  tbody
-    - @session_reviews.each do |sr|
-      tr
-        td = sr.tutor.display_name
-        td = sr.learner.display_name
-        td = sr.average_score
-        td = link_to "Click to show", sr
-        td = link_to "Click to delete", sr, method: :delete, data: {confirm: "Are you really 100% sure?  This is probably a bad idea..."}
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-bordered.table-striped.tablesorter-blue#all-session-reviews-table
+      thead
+        tr
+          th Tutor
+          th Student
+          th Average Score
+          th Show Review
+          th Destroy Review
+      tbody
+        - @session_reviews.each do |sr|
+          tr
+            td = sr.tutor.display_name
+            td = sr.learner.display_name
+            td = sr.average_score
+            td = link_to "Click to show", sr
+            td = link_to "Click to delete", sr, method: :delete, data: {confirm: "Are you really 100% sure?  This is probably a bad idea..."}

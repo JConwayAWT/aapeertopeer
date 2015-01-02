@@ -3,19 +3,21 @@
     .text-center
       h2 Tutor Applications
 
-table.table.table-boredered.table-striped.tablesorter-blue#all-applications-table
-  thead
-    tr
-      th Name
-      th Grade
-      th Subjects
-      th 
-      th
-  tbody
-    - @tutor_applications.each do |app|
-      tr
-        td = app.full_name
-        td = app.grade
-        td = app.subjects
-        td = link_to "Show application", app
-        td = link_to "Delete application", app, data: {confirm: "Are you sure?"}, method: :delete
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-boredered.table-striped.tablesorter-blue#all-applications-table
+      thead
+        tr
+          th Name
+          th Grade
+          th Subjects
+          th 
+          th
+      tbody
+        - @tutor_applications.each do |app|
+          tr
+            td = app.full_name
+            td = app.grade
+            td = app.subjects
+            td = link_to "Show application", app
+            td = link_to "Delete application", app, data: {confirm: "Are you sure?"}, method: :delete

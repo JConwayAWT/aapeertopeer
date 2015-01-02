@@ -1,5 +1,5 @@
-.row
-  .col-md-12
+.full-row
+  .col-md-10.col-md-offset-1
     .text-center
       h2 Welcome to Archmere Tutoring!
 
@@ -18,9 +18,15 @@
   br
 
   .row
-    .col-md-12
-      .text-center
-        = button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-success", style: "width: 200px"
-        br
-        = button_to "Sign up", new_user_registration_path, method: :get, class: "btn btn-primary", style: "width: 200px"
+    .col-md-4.col-md-offset-2 align="center"
+      .new-here
+        .text-center
+          h3 Never been here before?
+          = button_to "Sign up", new_user_registration_path, method: :get, class: "btn btn-primary", style: "width: 200px; height: 44px; font-size: 21px;"
+
+    .col-md-4 align="center"
+      .old-here
+        .text-center
+          h3 Already have an account?
+          = button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-success", style: "width: 200px; height: 44px; font-size: 21px;"
 

@@ -3,17 +3,19 @@
     .text-center
       h2 Submitted Applications
 
-table.table.table-striped.table-bordered.tablesorter-blue
-  thead
-    tr
-      th Date submitted
-      th Subjects
-      th Times available
-      th Review link
-  tbody
-    - @applications.each do |app|
-      tr
-        td = app.created_at
-        td = app.subjects
-        td = app.times_available
-        td = link_to "Click to review", app
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-striped.table-bordered.tablesorter-blue
+      thead
+        tr
+          th Date submitted
+          th Subjects
+          th Times available
+          th Review link
+      tbody
+        - @applications.each do |app|
+          tr
+            td = app.created_at
+            td = app.subjects
+            td = app.times_available
+            td = link_to "Click to review", app

@@ -5,69 +5,73 @@
 
 - if current_user.is_admin == true
   .row
-    .col-md-12
+    .col-md-10.col-md-offset-1
       .text-right
         = button_to "Admin: View All Requests", "/requests/view_all", method: :get, class: "btn btn-primary"
 
 .row
-  .col-md-12
+  .col-md-10.col-md-offset-1
     h3 Outgoing Requests
 
-table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-table
-  thead
-    tr
-      th Tutor
-      th Subject
-      th Start Time
-      th Duration
-      th Status
-      th Additional Information
-      th Response Text
-      th Survey
-      th Cancel
-  tbody
-    - @requests_out.each do |r|
-      - next if r.status == "Completed"
-      tr
-        td 
-          <u> 
-            = link_to r.tutor.display_name, user_path(r.tutor)
-          </u>
-        td = r.subject.blank? ? "None specified" : r.subject.name
-        td = r.time
-        td = r.duration.to_f
-        td = r.status
-        td = r.additional_information
-        td = r.rejection_message
-        td #{link_to "Complete Survey", edit_session_review_path(r.get_survey)}
-        td #{link_to "Cancel request", request_path(r), method: :delete}
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-bordered.table-striped.tablesorter-blue#outgoing-requests-table
+      thead
+        tr
+          th Tutor
+          th Subject
+          th Start Time
+          th Duration
+          th Status
+          th Additional Information
+          th Response Text
+          th Survey
+          th Cancel
+      tbody
+        - @requests_out.each do |r|
+          - next if r.status == "Completed"
+          tr
+            td 
+              <u> 
+                = link_to r.tutor.display_name, user_path(r.tutor)
+              </u>
+            td = r.subject.blank? ? "None specified" : r.subject.name
+            td = r.time
+            td = r.duration.to_f
+            td = r.status
+            td = r.additional_information
+            td = r.rejection_message
+            td #{link_to "Complete Survey", edit_session_review_path(r.get_survey)}
+            td #{link_to "Cancel request", request_path(r), method: :delete}
 
 .row
-  .col-md-12
+  .col-md-10.col-md-offset-1
     h3 Incoming Requests
 
-table.table.table-bordered.table-striped.tablesorter-blue#incoming-requests-table
-  thead
-    tr
-      th Student
-      th Subject
-      th Start Time
-      th Duration
-      th Status
-      th Additional Information
-      th Response
-  tbody
-    - @requests_in.each do |r|
-      - next if r.status == "Completed"
-      tr
-        td 
-          <u>
-            = link_to r.learner.display_name, user_path(r.learner)
-          </u>
-        td = r.subject.blank? ? "None specified" : r.subject.name
-        td = r.time
-        td = r.duration.to_f
-        td = r.status
-        td = r.additional_information
-        td #{link_to "Update", "/request_response/#{r.id}"}
+.row
+  .col-md-10.col-md-offset-1
+    table.table.table-bordered.table-striped.tablesorter-blue#incoming-requests-table
+      thead
+        tr
+          th Student
+          th Subject
+          th Start Time
+          th Duration
+          th Status
+          th Additional Information
+          th Response
+      tbody
+        - @requests_in.each do |r|
+          - next if r.status == "Completed"
+          tr
+            td 
+              <u>
+                = link_to r.learner.display_name, user_path(r.learner)
+              </u>
+            td = r.subject.blank? ? "None specified" : r.subject.name
+            td = r.time
+            td = r.duration.to_f
+            td = r.status
+            td = r.additional_information
+            td #{link_to "Update", "/request_response/#{r.id}"}
 

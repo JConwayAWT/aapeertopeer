@@ -9,68 +9,72 @@ html
     #full-wrapper
       #full-header
         nav.navbar.navbar-inverse#no-border-radius.green-navbar role="navigation"
-          .container-fluid style="height:70px; padding-top:10px;"
+          .container-fluid
             .navbar-header
+              button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#aa-navbar"
+                span.sr-only Toggle Navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
               .navbar-brand
-                a.raleway href="/" style="color:white; font-size:40px; text-decoration: none; background-color: transparent" AA P2P
+                a.raleway href="/" style="color:white; font-size:40px; text-decoration: none; background-color: transparent; padding-left: 15px;" AA P2P
 
-            ul.nav.navbar-nav.navbar-right style="padding-right: 25px;"
-              - if not signed_in?
-                li.active
-                  / a href="#" style="background-color: transparent; border-right: thin solid white" Tutors
-                  = link_to "Sign Up", new_user_registration_path, style: "background-color: transparent"
-                li.active
-                  = link_to "Sign In", new_user_session_path, style: "background-color: transparent"
-              - else
+            .navbar-collapse.collapse#aa-navbar
+              .collapse-holder
+                ul.nav.navbar-nav.navbar-right
+                  - if not signed_in?
+                    li.active
+                      = link_to "Sign Up", new_user_registration_path, class: "navbar-link"
+                    li.active
+                      = link_to "Sign In", new_user_session_path, class: "navbar-link"
+                  - else
+                    li.dropdown
+                      a.dropdown-toggle.no-click-color-change data-toggle="dropdown" href="#"
+                        .white-header-link
+                          | Applications
+                          span.caret-medium
+                      ul.dropdown-menu role="menu"
+                        li
+                          = link_to "Submit Application", new_tutor_application_path
+                        li
+                          = link_to "My Submissions", "/my_applications"
+                        - if current_user.is_admin == true
+                          li
+                            = link_to "All Submissions", tutor_applications_path
 
 
-                li.dropdown
-                  a.dropdown-toggle.no-click-color-change data-toggle="dropdown" href="#"
-                    .white-header-link
-                      | Applications
-                      span.caret-medium
-                  ul.dropdown-menu role="menu"
-                    li
-                      = link_to "Submit Application", new_tutor_application_path
-                    li
-                      = link_to "My Submissions", "/my_applications"
-                    - if current_user.is_admin == true
-                      li
-                        = link_to "All Submissions", tutor_applications_path
+                    li.active
+                      = link_to "Requests", requests_path, class: "navbar-link"
 
+                    - if current_user.is_admin?
+                      li.active
+                        = link_to "Subjects", subjects_path, class: "navbar-link"
+                      li.active
+                        = link_to "Users", users_path, class: "navbar-link"
+                      li.active
+                        = link_to "Reviews", session_reviews_path, class: "navbar-link"
 
-                li.active
-                  = link_to "Requests", requests_path, style: "background-color: transparent"
+                    - if current_user.subjects_learning.any?
+                      li.active
+                        = link_to "Find Tutors", "/find_tutors", class: "navbar-link"
+                    li.dropdown
+                      a.dropdown-toggle.no-click-color-change data-toggle="dropdown" href="#"
+                        .white-header-link
+                          | My Profile
+                          span.caret-medium
+                      ul.dropdown-menu role="menu"
+                        li
+                          = link_to "Show", user_path(current_user)
+                          = link_to "Edit", edit_user_path(current_user)
+                          = link_to "Settings", edit_user_registration_path(current_user)
+                          - if current_user.is_admin == true
+                            = link_to "Revoke admin", "/revoke_admin", data: {confirm: "Are you sure you want to remove you administrator privileges?"}
 
-                - if current_user.is_admin?
-                  li.active
-                    = link_to "Subjects", subjects_path, style: "background-color: transparent"
-                  li.active
-                    = link_to "Users", users_path, style: "background-color: transparent"
-                  li.active
-                    = link_to "Reviews", session_reviews_path, style: "background-color: transparent"
-
-                - if current_user.subjects_learning.any?
-                  li.active
-                    = link_to "Find Tutors", "/find_tutors", style: "background-color: transparent"
-                li.dropdown
-                  a.dropdown-toggle.no-click-color-change data-toggle="dropdown" href="#"
-                    .white-header-link
-                      | My Profile
-                      span.caret-medium
-                  ul.dropdown-menu role="menu"
-                    li
-                      = link_to "Show", user_path(current_user)
-                      = link_to "Edit", edit_user_path(current_user)
-                      = link_to "Settings", edit_user_registration_path(current_user)
-                      - if current_user.is_admin == true
-                        = link_to "Revoke admin", "/revoke_admin", data: {confirm: "Are you sure you want to remove you administrator privileges?"}
-
-                li.active
-                  = link_to "Sign Out", destroy_user_session_path, method: :delete, style: "background-color: transparent"
+                    li.active
+                      = link_to "Sign Out", destroy_user_session_path, method: :delete, class: "navbar-link"
 
       #full-content
-        .container#body-container
+        .container-fluid#body-container
           - if notice
             .row
               .col-md-8.col-md-offset-2

@@ -29,6 +29,36 @@ html, body{
   padding: 5px;
 }
 
+.full-row{
+  box-sizing: border-box;
+  color: rgb(51, 51, 51);
+  display: block;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 63px;
+  line-height: 20px;
+  width: 100%;
+}
+
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.row.padded{
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.container-fluid{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.collapse-holder{
+  padding-left: 15px;
+}
+
 .raleway{
   font-family: 'Raleway';
   font-weight: 700;
@@ -41,6 +71,23 @@ html, body{
 
 #full-header{
 
+}
+
+.container-fluid{
+  .navbar-header{
+    margin-right: inherit;
+  }
+}
+
+.navbar-inverse .navbar-nav{
+  .active{
+    a{
+      background-color: #00573D;
+      &:hover{
+        background-color: lighten(#00573D, 10%);
+      }
+    }
+  }
 }
 
 #full-content{
@@ -156,4 +203,25 @@ html, body{
   td{
     font-size: 10px;
   }
+}
+
+.new-here{
+  width: 360px;
+  height: 360px;
+  background-color: rgba(0, 148, 255, 0.14);
+  padding-top: 119px;
+  border-radius: 180px;
+  margin-bottom: 20px;
+}
+
+.old-here{
+  width: 360px;
+  height: 360px;
+  background-color: rgba(36, 255, 0, 0.14);
+  padding-top: 119px;
+  border-radius: 180px;
+}
+
+.some-div{
+  display: inherit;
 }
