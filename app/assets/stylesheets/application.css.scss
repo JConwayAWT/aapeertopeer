@@ -208,18 +208,48 @@ html, body{
 .new-here{
   width: 360px;
   height: 360px;
-  background-color: rgba(0, 148, 255, 0.14);
   padding-top: 119px;
   border-radius: 180px;
   margin-bottom: 20px;
+
+  -webkit-transition: background-color 0.6s ease;
+  -moz-transition: background-color 0.6s ease;
+  -o-transition: background-color 0.6s ease;
+  transition: background-color 0.6s ease;
+
+  background-color: rgba(0, 148, 255, 0.14);
+
+  &:hover{
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+
+    background-color: rgba(0, 148, 255, 0.33)
+  }
 }
 
 .old-here{
   width: 360px;
   height: 360px;
-  background-color: rgba(36, 255, 0, 0.14);
   padding-top: 119px;
   border-radius: 180px;
+
+  -webkit-transition: background-color 0.6s ease;
+  -moz-transition: background-color 0.6s ease;
+  -o-transition: background-color 0.6s ease;
+  transition: background-color 0.6s ease;
+
+  background-color: rgba(36, 255, 0, 0.14);
+  
+  &:hover{
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+
+    background-color: rgba(36, 255, 0, 0.33);
+  }
 }
 
 .some-div{
