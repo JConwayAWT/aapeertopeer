@@ -17,7 +17,10 @@
       tbody
         - @requests.each do |r|
           tr
-            td = link_to r.tutor.display_name, r.tutor
+            - if r.tutor
+              td = link_to r.tutor.display_name, r.tutor
+            - else
+              td [Tutor account deleted]
             - if r.learner
               td = link_to r.learner.display_name, r.learner
             - else

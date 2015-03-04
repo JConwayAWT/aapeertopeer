@@ -16,7 +16,10 @@
       tbody
         - @session_reviews.each do |sr|
           tr
-            td = sr.tutor.display_name
+            - if sr.tutor
+              td = sr.tutor.display_name
+            - else
+              td [Tutor account deleted]
             - if sr.learner
               td = sr.learner.display_name
             - else

@@ -5,7 +5,7 @@
 
 .row
   .col-md-6.col-md-offset-3
-    | This is the session review between #{@session_review.tutor.display_name} (tutor) and #{@session_review.learner.display_name} (learner).  The subject of the session was #{@session_review.subject.blank? ? "(Unavailable - subject deleted)" : @session_review.subject.name}.
+    | This is the session review between #{@session_review.tutor ? @session_review.tutor.display_name : "[Tutor account deleted]"} (tutor) and #{@session_review.learner ? @session_review.learner.display_name : "[Learner account deleted]"} (learner).  The subject of the session was #{@session_review.subject.blank? ? "(Unavailable - subject deleted)" : @session_review.subject.name}.
 
     br
     br

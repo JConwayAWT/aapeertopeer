@@ -31,10 +31,10 @@
         - @requests_out.each do |r|
           - next if r.status == "Completed"
           tr
-            td 
-              <u> 
-                = link_to r.tutor.display_name, user_path(r.tutor)
-              </u>
+            - if r.tutor
+              u = link_to r.tutor.display_name, user_path(r.tutor)
+            - else
+              u [Tutor account deleted]
             td = r.subject.blank? ? "None specified" : r.subject.name
             td = r.time
             td = r.duration.to_f
