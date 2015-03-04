@@ -18,7 +18,10 @@
         - @requests.each do |r|
           tr
             td = link_to r.tutor.display_name, r.tutor
-            td = link_to r.learner.display_name, r.learner
+            - if r.learner
+              td = link_to r.learner.display_name, r.learner
+            - else
+              td [Learner account deleted]
             td 
               = r.status + " "
               - if r.status == "Completed"

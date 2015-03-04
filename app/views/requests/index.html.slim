@@ -64,10 +64,15 @@
         - @requests_in.each do |r|
           - next if r.status == "Completed"
           tr
-            td 
-              <u>
-                = link_to r.learner.display_name, user_path(r.learner)
-              </u>
+            td
+              - if r.learner
+                <u>
+                  = link_to r.learner.display_name, user_path(r.learner)
+                </u>
+              - else
+                <u>
+                  [Learner account deleted]
+                </u>
             td = r.subject.blank? ? "None specified" : r.subject.name
             td = r.time
             td = r.duration.to_f
