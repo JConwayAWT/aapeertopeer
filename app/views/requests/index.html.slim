@@ -66,13 +66,9 @@
           tr
             td
               - if r.learner
-                <u>
-                  = link_to r.learner.display_name, user_path(r.learner)
-                </u>
+                u = link_to r.learner.display_name, user_path(r.learner)
               - else
-                <u>
-                  [Learner account deleted]
-                </u>
+                u [Learner account deleted]
             td = r.subject.blank? ? "None specified" : r.subject.name
             td = r.time
             td = r.duration.to_f
